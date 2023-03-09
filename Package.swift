@@ -1,4 +1,4 @@
-// swift-tools-version:5.2.0
+// swift-tools-version:5.5
 
 import PackageDescription
 
@@ -12,11 +12,13 @@ let package = Package(
         .package(url: "https://github.com/kylef/PathKit.git", .upToNextMinor(from: "1.0.0")),
     ],
     targets: [
-        .target(name: "XcodeProj",
-                dependencies: [
-                    "PathKit",
-                    "AEXML",
-                ]),
+        .target(
+            name: "XcodeProj",
+            dependencies: [
+                .product(name: "PathKit", package: "pathkit"),
+                .product(name: "AEXML", package: "aexml")
+            ]
+        ),
         .testTarget(name: "XcodeProjTests", dependencies: ["XcodeProj"]),
     ]
 )
