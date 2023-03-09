@@ -13,11 +13,13 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.3.0")
     ],
     targets: [
-        .target(name: "XcodeProj",
-                dependencies: [
-                    "PathKit",
-                    "AEXML",
-                ]),
+        .target(
+            name: "XcodeProj",
+            dependencies: [
+                .product(name: "PathKit", package: "pathkit"),
+                .product(name: "AEXML", package: "aexml")
+            ]
+        ),
         .testTarget(name: "XcodeProjTests", dependencies: ["XcodeProj"]),
     ]
 )
